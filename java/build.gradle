@@ -65,6 +65,7 @@ graalvmNative {
 }
 
 tasks.named("dockerfileNative") {
+    dependsOn runShellScript
     baseImage = "amazonlinux:2023"
     jdkVersion = "21"
     args(
@@ -79,4 +80,10 @@ tasks.named("dockerfileNative") {
             insert('RUN curl --silent -L https://musl.libc.org/releases/musl-1.2.5.tar.gz -o /tmp/musl-1.2.5.tar.gz && tar -zxf /tmp/musl-1.2.5.tar.gz -C /tmp && cd /tmp/musl-1.2.5 && ./configure --bindir=/usr/local/bin &> /dev/null && make --silent && make install')
         }
     }
+}
+
+task runShellScript(type: Exec) {
+    workingDir "$projectDir"
+    // Overwrite Micronaut application.jar
+    commandLine './precompile-drl.sh'
 }
