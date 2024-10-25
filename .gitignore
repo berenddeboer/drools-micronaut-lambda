@@ -11,3 +11,4 @@ cdk.out
 response.json
 .vscode
 java/bin
+test-results-native/

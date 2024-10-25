@@ -33,7 +33,7 @@ public class FunctionRequestHandler extends MicronautRequestHandler<Measurement,
         instance.close();
 
         try {
-            System.out.println("output: " + objectMapper.writeValueAsString(queryResult));
+            System.out.println("Result: " + objectMapper.writeValueAsString(queryResult));
         } catch (IOException e) {
             throw new RuntimeException("Error processing output", e);
         }
